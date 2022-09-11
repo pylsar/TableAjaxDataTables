@@ -2,22 +2,22 @@ import './style.css'
 
 $(document).ready(function(){
   $('#userTable').DataTable({
-      ajax: './assets/db.json',
+      ajax: 'http://127.0.0.1:5173/assets/db.json',
       dom: 'Bfrtip',
       columns: [
-          {'data' : 'id'},
-          {'data' : 'name'},
-          {'data' : 'lastname'},
-          {'data' : 'profession'},
-          {'data' : 'age'},
-          {'data' : 'mail', className: "one"},
-          {'data' : 'password'},
+          {data : 'id'},
+          {data : 'name'},
+          {data : 'lastname'},
+          {data : 'profession'},
+          {data : 'age'},
+          {data : 'mail', className: "mail"},
+          {data : 'password'},
       ],
   });
 
   $('#userTable').on('draw.dt', function(){
       $('#userTable').Tabledit({
-          ajax: './assets/db.json',
+          ajax: 'http://127.0.0.1:5173/assets/db.json',
           dataType: 'json',
           columns: {
               identifier: [0 , 'id'],
@@ -29,6 +29,9 @@ $(document).ready(function(){
                   $('a' + data.id).remove();
                   $('#userTable').DataTable().ajax.reload();
               }
+            //   if(data.action == 'edit'){
+                
+            //   }
           }
       })
   })
